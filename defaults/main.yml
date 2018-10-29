@@ -1,0 +1,5 @@
+kube_dashboard_version: 1.10.0
+kube_dashboard_registry: k8s.gcr.io
+
+# Also defined in kubernetes_node role
+kube_kubelet_config: /var/lib/kubelet/kubeconfig
