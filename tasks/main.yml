@@ -2,13 +2,5 @@
   docker_image:
     name: "{{ kube_dashboard_registry }}/kubernetes-dashboard-amd64"
     tag: v{{ kube_dashboard_version }}
-- name: Copy kubernetes dashboard manifest
-  template:
-    src: kubernetes-dashboard.yml.j2
-    dest: /etc/kubernetes/kubernetes-dashboard.yml
-- name: Apply kubernetes dashboard deployment
-  command: kubectl apply -f /etc/kubernetes/kubernetes-dashboard.yml
-  environment:
-    KUBECONFIG: "{{ kube_kubelet_config }}"
-  register: apply_result
-  changed_when: apply_result.stdout is search("configured|created")
+- name: Deploy kubernetes dashboard
+  include_tasks: k8s.yml
